@@ -8,6 +8,22 @@
 
 import UIKit
 
+public struct RelativeLocation: Codable {
+    
+    var base:RelativeBase
+    var path:String
+    
+    enum RelativeBase: String, Codable {
+        case documents
+        case temporary
+    }
+}
+
+public enum FileLocation {
+    case specific(String)
+    case relative(RelativeLocation)
+}
+
 public enum TaskStatus: Int {
     case unknown, gettingInfo, downloading, paused, failed
     
