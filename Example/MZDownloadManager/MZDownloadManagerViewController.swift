@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MZDownloadManager
 
 let alertControllerViewTag: Int = 500
 
