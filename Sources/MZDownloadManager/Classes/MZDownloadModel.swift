@@ -8,20 +8,100 @@
 
 import UIKit
 
-public struct RelativeLocation: Codable {
+protocol FileLocationResolvable {
+    func resolveToUrl() -> URL?
+    func resolveToPath() -> String?
+}
+
+public enum RelativeBase: String, Codable, FileLocationResolvable {
+    case documents
+    case temporary
     
-    var base:RelativeBase
-    var path:String
+    func resolveToUrl() -> URL? {
+        return Self.currentBaseDirectory(base: self)
+    }
     
-    enum RelativeBase: String, Codable {
-        case documents
-        case temporary
+    func resolveToPath() -> String? {
+        return Self.currentBaseDirectory(base: self)?.path(percentEncoded: false)
+    }
+    
+    static var currentDocumentDirectory:URL?
+    {
+        let location:FileManager.SearchPathDirectory = .documentDirectory
+        
+        if let documentDirectory = FileManager.default.urls(for: location, in: .userDomainMask).last
+        {
+            return documentDirectory
+        }
+        
+        return nil
+    }
+    
+    static var currentTempDirectory:URL {
+        let tempDirectory = FileManager.default.temporaryDirectory
+        
+        return tempDirectory
+    }
+    
+    static func currentBaseDirectory(base:RelativeBase) -> URL? {
+        if base == .temporary {
+            return Self.currentTempDirectory
+        }
+        else {
+            //defualt to the document directory
+            return Self.currentDocumentDirectory
+        }
     }
 }
 
-public enum FileLocation {
+public struct RelativeLocation: Codable, FileLocationResolvable {
+    
+    var base:RelativeBase
+    var path:String
+
+    func resolveToUrl() -> URL? {
+        guard let baseUrl = self.base.resolveToUrl() else {
+            return nil
+        }
+        
+        if self.path.isEmpty {
+            return baseUrl
+        }
+        
+        return baseUrl.appending(path: self.path)
+    }
+    
+    func resolveToPath() -> String? {
+        return self.resolveToUrl()?.path(percentEncoded: false)
+    }
+}
+
+public enum FileLocation: FileLocationResolvable {
     case specific(String)
     case relative(RelativeLocation)
+    
+    func resolveToUrl() -> URL? {
+        switch self {
+        case .specific(let specificLocation):
+            let url = URL(string: specificLocation)
+            return url
+            
+        case .relative(let relativeLocation):
+            let url = relativeLocation.resolveToUrl()
+            return url
+        }
+    }
+    
+    func resolveToPath() -> String? {
+        switch self {
+        case .specific(let specificLocation):
+            return specificLocation
+            
+        case .relative(let relativeLocation):
+            let path = relativeLocation.resolveToPath()
+            return path
+        }
+    }
 }
 
 public enum TaskStatus: Int {
@@ -62,7 +142,7 @@ open class MZDownloadModel: NSObject {
     
     open var startTime: Date?
     
-    fileprivate(set) open var destinationPath: String = ""
+    fileprivate(set) open var destination: FileLocation = .relative(RelativeLocation(base: .temporary, path: ""))
     
     fileprivate convenience init(fileName: String, fileURL: String) {
         self.init()
@@ -71,9 +151,9 @@ open class MZDownloadModel: NSObject {
         self.fileURL = fileURL
     }
     
-    convenience init(fileName: String, fileURL: String, destinationPath: String) {
+    convenience init(fileName: String, fileURL: String, destination: FileLocation) {
         self.init(fileName: fileName, fileURL: fileURL)
         
-        self.destinationPath = destinationPath
+        self.destination = destination
     }
 }
