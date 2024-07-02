@@ -123,8 +123,13 @@ extension MZDownloadManager {
             let taskDescComponents: [String] = downloadTask.taskDescription!.components(separatedBy: ",")
             let fileName = taskDescComponents[TaskDescFileNameIndex]
             let fileURL = taskDescComponents[TaskDescFileURLIndex]
+            
             let destinationPath = taskDescComponents[TaskDescFileDestinationIndex]
             
+            make sure destinationPath is valid, and try to remap if not
+            documents? or temp? cut off suffix, and verify the base is valid
+                
+                                                                        
             let downloadModel = MZDownloadModel.init(fileName: fileName, fileURL: fileURL, destinationPath: destinationPath)
             downloadModel.task = downloadTask
             downloadModel.startTime = Date()

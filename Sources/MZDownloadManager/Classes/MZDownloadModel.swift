@@ -142,7 +142,8 @@ open class MZDownloadModel: NSObject {
     
     open var startTime: Date?
     
-    fileprivate(set) open var destination: FileLocation = .relative(RelativeLocation(base: .temporary, path: ""))
+    fileprivate(set) open var destinationPath: String = ""
+    //fileprivate(set) open var destination: FileLocation = .relative(RelativeLocation(base: .temporary, path: ""))
     
     fileprivate convenience init(fileName: String, fileURL: String) {
         self.init()
@@ -151,9 +152,9 @@ open class MZDownloadModel: NSObject {
         self.fileURL = fileURL
     }
     
-    convenience init(fileName: String, fileURL: String, destination: FileLocation) {
+    convenience init(fileName: String, fileURL: String, destinationPath: String) {
         self.init(fileName: fileName, fileURL: fileURL)
         
-        self.destination = destination
+        self.destinationPath = destinationPath
     }
 }
