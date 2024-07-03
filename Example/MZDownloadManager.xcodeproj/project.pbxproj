@@ -19,7 +19,7 @@
 		FA43F21B2C2F43D0007AA7EB /* MZUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43F2152C2F43D0007AA7EB /* MZUtility.swift */; };
 		FA43F21C2C2F43D0007AA7EB /* MZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43F2162C2F43D0007AA7EB /* MZDownloadManager.swift */; };
 		FA43F21E2C2F43D0007AA7EB /* MZDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43F2182C2F43D0007AA7EB /* MZDownloadModel.swift */; };
-		FA43F2262C35E932007AA7EB /* FileManager+RemapSandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43F2252C35E932007AA7EB /* FileManager+RemapSandbox.swift */; };
+		FA43F2282C3605C9007AA7EB /* FileManager+RemapSandbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43F2272C3605C9007AA7EB /* FileManager+RemapSandbox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		FA43F2152C2F43D0007AA7EB /* MZUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZUtility.swift; sourceTree = "<group>"; };
 		FA43F2162C2F43D0007AA7EB /* MZDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadManager.swift; sourceTree = "<group>"; };
 		FA43F2182C2F43D0007AA7EB /* MZDownloadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadModel.swift; sourceTree = "<group>"; };
-		FA43F2252C35E932007AA7EB /* FileManager+RemapSandbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+RemapSandbox.swift"; sourceTree = "<group>"; };
+		FA43F2272C3605C9007AA7EB /* FileManager+RemapSandbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FileManager+RemapSandbox.swift"; path = "Sources/MZDownloadManager.swift/FileManager+RemapSandbox.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				FA43F2132C2F43D0007AA7EB /* MZDownloadManager */,
-				FA43F2252C35E932007AA7EB /* FileManager+RemapSandbox.swift */,
 			);
 			name = Sources;
 			path = ../Sources;
@@ -158,9 +157,11 @@
 		FA43F2132C2F43D0007AA7EB /* MZDownloadManager */ = {
 			isa = PBXGroup;
 			children = (
+				FA43F2272C3605C9007AA7EB /* FileManager+RemapSandbox.swift */,
 				FA43F2142C2F43D0007AA7EB /* Classes */,
 			);
-			path = MZDownloadManager;
+			name = MZDownloadManager;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		FA43F2142C2F43D0007AA7EB /* Classes */ = {
@@ -170,7 +171,8 @@
 				FA43F2162C2F43D0007AA7EB /* MZDownloadManager.swift */,
 				FA43F2182C2F43D0007AA7EB /* MZDownloadModel.swift */,
 			);
-			path = Classes;
+			name = Classes;
+			path = Sources/MZDownloadManager.swift/Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +291,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				DAEEB83F1CD095D800D97E0F /* MZAvailableDownloadsViewController.swift in Sources */,
 				DAEEB83D1CD095D800D97E0F /* MZDownloadManagerViewController.swift in Sources */,
-				FA43F2262C35E932007AA7EB /* FileManager+RemapSandbox.swift in Sources */,
+				FA43F2282C3605C9007AA7EB /* FileManager+RemapSandbox.swift in Sources */,
 				FA43F21B2C2F43D0007AA7EB /* MZUtility.swift in Sources */,
 				DAEEB8401CD095D800D97E0F /* MZDownloadingCell.swift in Sources */,
 				DAEEB83E1CD095D800D97E0F /* MZDownloadedViewController.swift in Sources */,
