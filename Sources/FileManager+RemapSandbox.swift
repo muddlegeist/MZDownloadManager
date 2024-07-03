@@ -12,8 +12,8 @@ extension FileManager {
     static func sandboxRemap(path: String) -> String? {
         
         // Determine which directory the old path belongs to
-        let documentDirName = "Documents"
-        let cachesDirName = "Library/Caches"
+        let documentDirName = "Documents/"
+        let cachesDirName = "Library/Caches/"
         let searchPathDirectory: FileManager.SearchPathDirectory
         let directoryBaseName: String
         
