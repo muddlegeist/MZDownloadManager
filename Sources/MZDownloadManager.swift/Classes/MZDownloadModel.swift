@@ -9,7 +9,7 @@
 import UIKit
 
 public enum TaskStatus: Int {
-    case unknown, gettingInfo, downloading, paused, failed
+    case unknown, gettingInfo, downloading, paused, completed, failed
     
     public func description() -> String {
         switch self {

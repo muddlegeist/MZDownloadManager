@@ -117,6 +117,8 @@ extension MZDownloadManager {
     
     fileprivate func populateOtherDownloadTasks() {
         
+        print("MZDownloadManager:populateOtherDownloadTasks() - BEGIN")
+        
         let downloadTasks = self.downloadTasks()
         
         for downloadTask in downloadTasks {
@@ -132,16 +134,33 @@ extension MZDownloadManager {
             downloadModel.task = downloadTask
             downloadModel.startTime = Date()
             
+            var taskStateString = "STATE UNKNOWN"
+            
             if downloadTask.state == .running {
                 downloadModel.status = TaskStatus.downloading.description()
                 downloadingArray.append(downloadModel)
+                
+                taskStateString = "DOWNLOADING/RUNNING"
             } else if(downloadTask.state == .suspended) {
                 downloadModel.status = TaskStatus.paused.description()
                 downloadingArray.append(downloadModel)
+                
+                taskStateString = "SUSPENDED"
+            } else if(downloadTask.state == .completed) {
+                downloadModel.status = TaskStatus.completed.description()
+                downloadingArray.append(downloadModel)
+                
+                taskStateString = "COMPLETED"
             } else {
                 downloadModel.status = TaskStatus.failed.description()
+                
+                taskStateString = "FAILED"
             }
+            
+            print("DOWNLOAD TASK: \(fileName) - \(taskStateString) - \(fileURL)")
         }
+        
+        print("MZDownloadManager:populateOtherDownloadTasks() - END")
     }
     
     fileprivate func isValidResumeData(_ resumeData: Data?) -> Bool {
