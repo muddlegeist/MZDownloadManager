@@ -80,8 +80,8 @@ open class MZDownloadManager: NSObject {
         self.init()
         self.delegate = delegate
         self.sessionManager = backgroundSession(identifier: sessionIdentifer, configuration: sessionConfiguration)
-        self.populateOtherDownloadTasks()
         self.backgroundSessionCompletionHandler = completion
+        self.populateOtherDownloadTasks()
     }
     
     public class func defaultSessionConfiguration(identifier: String) -> URLSessionConfiguration {
