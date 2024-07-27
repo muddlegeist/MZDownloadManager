@@ -85,7 +85,11 @@ open class MZDownloadManager: NSObject {
     }
     
     public class func defaultSessionConfiguration(identifier: String) -> URLSessionConfiguration {
-        return URLSessionConfiguration.background(withIdentifier: identifier)
+        var config = URLSessionConfiguration.background(withIdentifier: identifier)
+        config.isDiscretionary = false
+        config.sessionSendsLaunchEvents = true
+        
+        return config
     }
     
     fileprivate func backgroundSession(identifier: String, configuration: URLSessionConfiguration? = nil) -> URLSession {
