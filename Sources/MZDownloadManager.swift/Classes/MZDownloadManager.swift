@@ -76,6 +76,13 @@ open class MZDownloadManager: NSObject {
     
     open var downloadingArray: [MZDownloadModel] = []
     
+    public convenience init(sessionManager:URLSession, delegate: MZDownloadManagerDelegate) {
+        self.init()
+        self.delegate = delegate
+        self.sessionManager = sessionManager
+        self.populateOtherDownloadTasks()
+    }
+    
     public convenience init(session sessionIdentifer: String, delegate: MZDownloadManagerDelegate, sessionConfiguration: URLSessionConfiguration? = nil, completion: (() -> Void)? = nil) {
         self.init()
         self.delegate = delegate
