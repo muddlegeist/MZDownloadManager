@@ -76,10 +76,11 @@ open class MZDownloadManager: NSObject {
     
     open var downloadingArray: [MZDownloadModel] = []
     
-    public convenience init(sessionManager:URLSession, delegate: MZDownloadManagerDelegate) {
+    public convenience init(sessionManager:URLSession, delegate: MZDownloadManagerDelegate, completion: (() -> Void)? = nil) {
         self.init()
         self.delegate = delegate
         self.sessionManager = sessionManager
+        self.backgroundSessionCompletionHandler = completion
         self.populateOtherDownloadTasks()
     }
     
