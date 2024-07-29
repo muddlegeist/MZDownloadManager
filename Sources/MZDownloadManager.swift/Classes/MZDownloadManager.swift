@@ -477,4 +477,10 @@ extension MZDownloadManager {
             application.presentLocalNotificationNow(localNotification)
         }
     }
+    
+    @objc public func kickstart() {
+        if self.downloadingArray.count > 0 {
+            self.retryDownloadTaskAtIndex(0)
+        }
+    }
 }
