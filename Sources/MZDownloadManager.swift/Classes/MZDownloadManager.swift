@@ -478,9 +478,9 @@ extension MZDownloadManager {
         }
     }
     
-    @objc public func kickstart() {
-        if self.downloadingArray.count > 0 {
-            self.retryDownloadTaskAtIndex(0)
-        }
-    }
+//    @objc public func kickstart() {
+//        if self.downloadingArray.count > 0 {
+//            self.retryDownloadTaskAtIndex(0)
+//        }
+//    }
 }
